@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: restpicamera
+Version: 0.1
+Summary: Use your raspberry pi camera over the air
+Home-page: https://github.com/openUC2/UC2-RESTPiCam
+Author: Benedict Diederich
+Author-email: bene.d@gmx.de
+License: UNKNOWN
+Description: # RestPiCamera 
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GPL v3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

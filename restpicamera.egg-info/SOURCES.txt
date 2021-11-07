@@ -1,0 +1,14 @@
+LICENSE
+README.md
+setup.py
+restpicamera/__init__.py
+restpicamera.egg-info/PKG-INFO
+restpicamera.egg-info/SOURCES.txt
+restpicamera.egg-info/dependency_links.txt
+restpicamera.egg-info/requires.txt
+restpicamera.egg-info/top_level.txt
+restpicamera/client/__init__.py
+restpicamera/client/picam_client.py
+restpicamera/server/__init__ .py
+restpicamera/server/fake_picamera.py
+restpicamera/server/set_picamera_gain.py

@@ -39,9 +39,22 @@ def set_iso(iso=200):
 
 @app.route("/picamera/exposuretime", methods=['GET'])
 def set_exposuretime(exposuretime=10000):
-    camera.iso = exposuretime
+    camera.shutter_speed = exposuretime
     logger.debug('set exposuretime value: %i',exposuretime)
     return {"exposuretime" : exposuretime}
+
+@app.route("/picamera/startstream", methods=['POST'])
+def start_stream():
+    camera.start_stream()
+    logger.debug('Stream started')
+    return {"stream" : True}
+
+@app.route("/picamera/stopstream", methods=['POST'])
+def stop_stream():
+    camera.stop_stream()
+    logger.debug('Stream stopped')
+    return {"stream" : False}
+
 
 #https://gist.github.com/kylehounslow/767fb72fde2ebdd010a0bf4242371594
 @app.route('/picamera/singleframe') #,methods=['POST'])
@@ -69,11 +82,6 @@ def framegenerator():
             print(e)
             print("Yield Exception")
             return
-
-@app.route("/picamera/stream", methods=['GET']) # todo authentication
-def start_stream():
-    return Response(framegenerator(),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
 camera = picamerax.PiCamera()
 camera.start_preview()
