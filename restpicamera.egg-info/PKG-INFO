@@ -6,9 +6,12 @@ Home-page: https://github.com/openUC2/UC2-RESTPiCam
 Author: Benedict Diederich
 Author-email: bene.d@gmx.de
 License: UNKNOWN
-Description: # RestPiCamera 
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: GPL v3
 Classifier: Operating System :: OS Independent
 Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# RestPiCamera 
+

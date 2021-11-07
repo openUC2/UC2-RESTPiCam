@@ -31,13 +31,19 @@ def get_iso():
     logger.debug('get iso value: %i',iso)
     return {"iso" : iso}
 
-@app.route("/picamera/iso", methods=['GET'])
+@app.route("/picamera/iso", methods=['POST'])
 def set_iso(iso=200):
     camera.iso = iso
     logger.debug('set iso value: %i',iso)
     return {"iso" : iso}
 
 @app.route("/picamera/exposuretime", methods=['GET'])
+def get_exposuretime():
+    exposuretime = camera.shutter_speed
+    logger.debug('get exposuretime value: %i',exposuretime)
+    return {"exposuretime" : exposuretime}
+
+@app.route("/picamera/exposuretime", methods=['POST'])
 def set_exposuretime(exposuretime=10000):
     camera.shutter_speed = exposuretime
     logger.debug('set exposuretime value: %i',exposuretime)
@@ -45,16 +51,23 @@ def set_exposuretime(exposuretime=10000):
 
 @app.route("/picamera/startstream", methods=['POST'])
 def start_stream():
-    camera.start_stream()
+    camera.start_preview()
     logger.debug('Stream started')
     return {"stream" : True}
 
 @app.route("/picamera/stopstream", methods=['POST'])
 def stop_stream():
-    camera.stop_stream()
+    camera.stop_preview()
     logger.debug('Stream stopped')
     return {"stream" : False}
 
+@app.route("/picamera/resolution_preview", methods=['GET'])
+def get_resolution_preview():
+    Nx, Ny = camera.resolution[0], camera.resolution[1]
+    logger.debug('Camera resolution: Nx%i, Ny%i', Nx, Ny)
+    return {"Nx" : Nx,
+    "Ny" : Ny,
+    }
 
 #https://gist.github.com/kylehounslow/767fb72fde2ebdd010a0bf4242371594
 @app.route('/picamera/singleframe') #,methods=['POST'])
@@ -82,6 +95,7 @@ def framegenerator():
             print(e)
             print("Yield Exception")
             return
+    
 
 camera = picamerax.PiCamera()
 camera.start_preview()
